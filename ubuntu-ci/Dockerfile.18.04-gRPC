@@ -1,0 +1,17 @@
+From ubuntu:18.04
+
+RUN apt-get -y dist-upgrade
+RUN apt-get -y update
+
+RUN apt-get -y install git build-essential autoconf libtool pkg-config cmake libssl-dev
+
+RUN git clone --recurse-submodules -b v1.42.0 https://github.com/grpc/grpc
+
+RUN cd grpc && mkdir -p build && cd build && \
+    cmake -DgRPC_INSTALL=ON \
+      -DgRPC_BUILD_TESTS=OFF \
+      -DCMAKE_INSTALL_PREFIX=/opt/pllee4 \
+      .. && \
+    make -j && make install
+
+RUN rm -r grpc
