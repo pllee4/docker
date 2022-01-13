@@ -7,6 +7,9 @@ build_18.04-gRPC:
 build_20.04-gRPC:
 	sudo docker build . -t pllee4/ubuntu-ci:20.04-gRPC -f ./ubuntu-ci/Dockerfile.20.04-gRPC
 
+build_zephyr-2.7-bionic:
+	sudo docker build . -t pllee4/ubuntu-ci:zephyr-2.7-bionic -f ./ubuntu-ci/Dockerfile.zephyr-2.7-bionic
+
 build_flutter-2.2.1:
 	sudo docker build . -t pllee4/ubuntu-ci:flutter-2.2.1 -f ./ubuntu-ci/Dockerfile.flutter-2.2.1
 
@@ -33,3 +36,6 @@ push_flutter-2.5.3-bionic: build_flutter-2.5.3-bionic
 
 push_flutter-2.5.3-focal: build_flutter-2.5.3-focal
 	sudo docker push pllee4/ubuntu-ci:flutter-2.5.3-focal
+
+push_zephyr-2.7-bionic:
+	sudo docker push pllee4/ubuntu-ci:zephyr-2.7-bionic
