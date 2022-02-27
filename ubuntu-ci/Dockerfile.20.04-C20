@@ -1,0 +1,25 @@
+From ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get -y dist-upgrade
+RUN apt-get -y update
+
+RUN apt-get -y install build-essential curl git
+
+RUN apt-get -y install software-properties-common
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt-get update -y && apt-get -y install gcc-11 g++-11
+
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 50
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 50
+RUN update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-11 100
+RUN update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-11 50
+RUN update-alternatives --set g++ /usr/bin/g++-11
+RUN update-alternatives --set gcc /usr/bin/gcc-11
+RUN update-alternatives --set cpp-bin /usr/bin/cpp-11
+
+RUN curl -L https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-linux-x86_64.sh > cmake-3.21.0-linux-x86_64.sh
+RUN chmod +x cmake-3.21.0-linux-x86_64.sh
+RUN ./cmake-3.21.0-linux-x86_64.sh --prefix=/usr/local/ --skip-license && ldconfig && rm cmake-3.21.0-linux-x86_64.sh
