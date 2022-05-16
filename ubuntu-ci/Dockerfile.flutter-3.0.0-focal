@@ -1,0 +1,42 @@
+From ubuntu:20.04
+
+RUN apt-get dist-upgrade
+RUN apt-get update
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Singapore
+RUN apt-get -y install unzip xz-utils git curl cmake clang ninja-build libgtk-3-dev pkg-config
+
+ENV JAVA_VERSION="8"
+ENV ANDROID_TOOLS_URL="https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip"
+ENV ANDROID_VERSION="29"
+ENV ANDROID_BUILD_TOOLS_VERSION="29.0.3"
+ENV ANDROID_SDK_ROOT="/android"
+ENV FLUTTER_HOME="/flutter"
+ENV FLUTTER_CHANNEL="stable"
+ENV FLUTTER_VERSION="3.0.0"
+ENV FLUTTER_URL="https://storage.googleapis.com/flutter_infra_release/releases/$FLUTTER_CHANNEL/linux/flutter_linux_$FLUTTER_VERSION-$FLUTTER_CHANNEL.tar.xz"
+ENV PATH="$PATH:/android/cmdline-tools/tools/bin:/android/emulator:/android/platforms:/android/tools:/android/platform-tools:/flutter/bin"
+
+ENV PATH="$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/platforms:$FLUTTER_HOME/bin:$PATH"
+RUN curl -o flutter.tar.xz $FLUTTER_URL
+RUN tar xf flutter.tar.xz
+RUN rm flutter.tar.xz
+
+RUN apt-get install -y libc6-dev-i386 lib32z1 openjdk-$JAVA_VERSION-jdk
+RUN curl -o android_tools.zip $ANDROID_TOOLS_URL
+RUN unzip -qq -d "$ANDROID_SDK_ROOT" android_tools.zip 
+RUN rm android_tools.zip
+
+RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/tools
+RUN mv $ANDROID_SDK_ROOT/cmdline-tools/bin $ANDROID_SDK_ROOT/cmdline-tools/tools && \
+    mv $ANDROID_SDK_ROOT/cmdline-tools/lib $ANDROID_SDK_ROOT/cmdline-tools/tools
+
+RUN git config --global --add safe.directory /flutter
+
+RUN yes "y" | sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" && \
+    yes "y" | sdkmanager "platforms;android-$ANDROID_VERSION" && \
+    yes "y" | sdkmanager "platform-tools" && \
+    yes "y" | sdkmanager "emulator"
+
+RUN flutter config --android-sdk $ANDROID_SDK_ROOT
