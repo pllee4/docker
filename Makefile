@@ -1,3 +1,9 @@
+build_18.04:
+	sudo docker build . -t pllee4/ubuntu-ci:18.04 -f ./ubuntu-ci/Dockerfile.18.04
+
+build_20.04:
+	sudo docker build . -t pllee4/ubuntu-ci:20.04 -f ./ubuntu-ci/Dockerfile.20.04
+
 build_18.04-C20:
 	sudo docker build . -t pllee4/ubuntu-ci:18.04-C20 -f ./ubuntu-ci/Dockerfile.18.04-C20
 
@@ -24,6 +30,12 @@ build_flutter-2.5.3-focal:
 
 build_flutter-3.0.0-focal:
 	sudo docker build . -t pllee4/ubuntu-ci:flutter-3.0.0-focal -f ./ubuntu-ci/Dockerfile.flutter-3.0.0-focal
+
+push_18.04: build_18.04
+	sudo docker push pllee4/ubuntu-ci:18.04
+
+push_20.04: build_20.04
+	sudo docker push pllee4/ubuntu-ci:20.04
 
 push_18.04-C20: build_18.04-C20
 	sudo docker push pllee4/ubuntu-ci:18.04-C20
