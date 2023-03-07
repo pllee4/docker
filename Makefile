@@ -22,6 +22,9 @@ build_zephyr-2.7-bionic:
 build_zephyr-2.7-focal:
 	sudo docker build . -t pllee4/ubuntu-ci:zephyr-2.7-focal -f ./ubuntu-ci/Dockerfile.zephyr-2.7-focal
 
+build_zephyr-3.3-focal:
+	sudo docker build . -t pllee4/ubuntu-ci:zephyr-3.3-focal -f ./ubuntu-ci/Dockerfile.zephyr-3.3-focal
+
 build_flutter-2.2.1:
 	sudo docker build . -t pllee4/ubuntu-ci:flutter-2.2.1 -f ./ubuntu-ci/Dockerfile.flutter-2.2.1
 
@@ -69,3 +72,6 @@ push_zephyr-2.7-bionic:
 
 push_zephyr-2.7-focal:
 	sudo docker push pllee4/ubuntu-ci:zephyr-2.7-focal
+
+push_zephyr-3.3-focal:
+	sudo docker push pllee4/ubuntu-ci:zephyr-3.3-focal
