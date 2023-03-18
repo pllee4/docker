@@ -10,7 +10,7 @@ RUN apt-get -y install build-essential curl git
 RUN apt-get -y install software-properties-common
 
 RUN apt -y install python3-pip
-RUN python3 -m pip install conan && conan user
+RUN python3 -m pip install conan
 
 RUN curl -L https://github.com/Kitware/CMake/releases/download/v3.21.0/cmake-3.21.0-linux-x86_64.sh > cmake-3.21.0-linux-x86_64.sh
 RUN chmod +x cmake-3.21.0-linux-x86_64.sh
