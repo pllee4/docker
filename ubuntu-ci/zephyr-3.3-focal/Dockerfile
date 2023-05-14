@@ -116,10 +116,10 @@ RUN wget ${WGET_ARGS} https://github.com/Kitware/CMake/releases/download/v${CMAK
 RUN apt-get install libcairo2-dev -y
 
 # Install Python dependencies
-RUN python3 -m pip install -U pip && \
-	pip3 install -U wheel setuptools && \
-	pip3 install pygobject && \
-	pip3 install \
+RUN python3 -m pip install -U --no-cache-dir pip && \
+	pip3 install -U --no-cache-dir wheel setuptools && \
+	pip3 install --no-cache-dir pygobject && \
+	pip3 install --no-cache-dir \
 		-r https://raw.githubusercontent.com/zephyrproject-rtos/zephyr/master/scripts/requirements.txt \
 		-r https://raw.githubusercontent.com/zephyrproject-rtos/mcuboot/master/scripts/requirements.txt \
 		awscli GitPython imgtool junitparser numpy protobuf PyGithub \
