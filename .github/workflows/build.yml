@@ -50,3 +50,10 @@ jobs:
           context: "{{defaultContext}}:project/control-toolbox"
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/project:control-toolbox
+
+      - name: Build and push jupyter-base-notebook
+        uses: docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:project/jupyter-base-notebook"
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/project:jupyter-base-notebook
