@@ -24,6 +24,7 @@ RUN apt-get update --yes && \
     #   it's not present in the aarch64 Ubuntu image, so we install it here
     pandoc \
     build-essential \
+    curl \
     # - `run-one` - a wrapper script that runs no more
     #   than one unique instance of some command with a unique set of arguments,
     #   we use `run-one-constantly` to support the `RESTARTABLE` option
