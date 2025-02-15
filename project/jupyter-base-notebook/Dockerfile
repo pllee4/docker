@@ -25,6 +25,7 @@ RUN apt-get update --yes && \
     pandoc \
     build-essential \
     curl \
+    ffmpeg libsm6 libxext6 libgl1 \
     # - `run-one` - a wrapper script that runs no more
     #   than one unique instance of some command with a unique set of arguments,
     #   we use `run-one-constantly` to support the `RESTARTABLE` option
