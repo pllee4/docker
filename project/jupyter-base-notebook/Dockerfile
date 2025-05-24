@@ -24,6 +24,7 @@ RUN apt-get update --yes && \
     #   it's not present in the aarch64 Ubuntu image, so we install it here
     pandoc \
     build-essential \
+    git \
     curl \
     ffmpeg libsm6 libxext6 libgl1 \
     # - `run-one` - a wrapper script that runs no more
