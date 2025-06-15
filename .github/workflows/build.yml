@@ -37,12 +37,12 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/ubuntu-ci:22.04
 
-      - name: Build and push zephyr-3.3-focal
-        uses: docker/build-push-action@v5
-        with:
-          context: "{{defaultContext}}:ubuntu-ci/zephyr-3.3-focal"
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ubuntu-ci:zephyr-3.3-focal
+      # - name: Build and push zephyr-3.3-focal
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: "{{defaultContext}}:ubuntu-ci/zephyr-3.3-focal"
+      #     push: true
+      #     tags: ${{ secrets.DOCKERHUB_USERNAME }}/ubuntu-ci:zephyr-3.3-focal
 
       - name: Build and push control-toolbox
         uses: docker/build-push-action@v5
