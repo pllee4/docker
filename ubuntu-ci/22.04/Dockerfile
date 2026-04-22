@@ -1,4 +1,4 @@
-From ubuntu:22.04
+FROM ubuntu:22.04
 
 RUN apt-get -y dist-upgrade
 RUN apt-get -y update

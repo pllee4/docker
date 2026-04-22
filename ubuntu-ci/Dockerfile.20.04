@@ -1,4 +1,4 @@
-From ubuntu:20.04
+FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 

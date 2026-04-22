@@ -1,4 +1,4 @@
-From ubuntu:18.04
+FROM ubuntu:18.04
 
 RUN apt-get -y dist-upgrade
 RUN apt-get -y update
